@@ -10,7 +10,7 @@ int main()
   //====================
 
   char path[20];
-  snprintf(path, 20, "map");
+  snprintf(path, 20, "map2");
 
   FILE *file;
   file = fopen(path, "r"); // read mode
@@ -65,10 +65,12 @@ int main()
         if (c=='*')
         {
           matCost[i][j] = -1;
+          matVect[i][j] = -1;
         }
         else
         {
           matCost[i][j] = 0;
+          matVect[i][j] = 0;
         }
 
         if (c=='@')
@@ -95,15 +97,43 @@ int main()
     }
     printf("\n");
   }
+  printf("\n");
+
+  for (int i=0; i<ny; i++)
+  {
+    for (int j=0; j<nx; j++)
+    {
+      printf("%d,",matVect[i][j]);
+    }
+    printf("\n");
+  }
+  printf("\n");
 
   fclose(file);
 
   //====================
-  // FINDING THe BEST PATH
+  // FINDING THE BEST PATH
   //====================
 
-  Array s;
-  display(s);
+  //Case to fill
+  Array filling1X = NULL;
+  Array filling1Y = NULL;
+
+  //Case to fill the next loop
+  Array filling2X = NULL;
+  Array filling2Y = NULL;
+
+  //Add the first case to fill : The start cell
+  append(&filling1X,start[0]);
+  append(&filling1Y,start[1]);
+
+  // Filling cells of MatCost and MatVect
+  // While the end cell is not filled, fill cells which are in the array up there
+  // OR while filling arrays are not empty, if they are : No solution found
+  while(matCost[end[1]][end[0]] == 0 && filling1X != NULL)
+  {
+    matCost[]
+  }
 
   return 0;
 }

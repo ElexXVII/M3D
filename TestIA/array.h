@@ -6,7 +6,8 @@ struct array
   int* t;
   int len;
 };
-typedef struct array Array;
+typedef struct array * Array;
 
 void append(Array*, int);
-void display(Array a);
+void display(Array);
+void delete(Array*);

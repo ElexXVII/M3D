@@ -2,32 +2,47 @@
 
 void append(Array* a, int e)
 {
-  a->len++;
-
-  if (a->len == 1)
+  if ((*a) == NULL)
   {
-    a->t = malloc(sizeof(int)*a->len);
+    (*a) = (Array) malloc(sizeof(Array));
+    (*a)->t = (int*) malloc(sizeof(int)*1);
+    (*a)->len = 1;
   }
   else
   {
-    a->t = realloc(sizeof(int)*a->len);
+    (*a)->t = (int*) realloc((*a)->t,sizeof(int)*(*a)->len);
+    (*a)->len ++;
   }
 
-  a->t[a->len-1] = e;
+  (*a)->t[(*a)->len-1] = e;
 }
 
 void display(Array a)
 {
-  printf("Array :");
-
-  for (int i=0; i<a->len; i++)
+  if (a != NULL)
   {
-    printf(" %d",a->t[i]);
-    if (i < a->len-1)
-    {
-      printf(",");
-    }
-  }
+    printf("Array :");
 
-  printf(" End \n");
+    for (int i=0; i<(a->len); i++)
+    {
+      printf(" %d",a->t[i]);
+      if (i < a->len-1)
+      {
+        printf(",");
+      }
+    }
+
+    printf(" : End \n\n");
+  }
+  else
+  {
+    printf("Array empty \n\n");
+  }
+}
+
+void delete(Array* a)
+{
+  free((*a)->t);
+  free((*a));
+  (*a) = NULL;
 }
