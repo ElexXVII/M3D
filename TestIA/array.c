@@ -10,8 +10,8 @@ void append(Array* a, int e)
   }
   else
   {
-    (*a)->t = (int*) realloc((*a)->t,sizeof(int)*(*a)->len);
     (*a)->len ++;
+    (*a)->t = (int*) realloc((*a)->t,sizeof(int)*((*a)->len));
   }
 
   (*a)->t[(*a)->len-1] = e;
@@ -43,6 +43,7 @@ void display(Array a)
 void delete(Array* a)
 {
   free((*a)->t);
+  (*a)->len = 0;
   free((*a));
   (*a) = NULL;
 }
